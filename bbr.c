@@ -82,6 +82,13 @@
 
 #define CYCLE_LEN		8	/* number of phases in a pacing gain cycle */
 
+/* 四种模式：
+   startup : 快速开始抢占带宽
+   Drain ： 清空启动阶段产生的路由队列
+   Probe_bw : 探测网络瓶颈带宽
+   probe_rtt : 探测传输往返时延
+*/
+
 /* BBR has the following modes for deciding how fast to send: */
 enum bbr_mode {
 	BBR_STARTUP,	/* ramp up sending rate rapidly to fill pipe */
@@ -89,6 +96,7 @@ enum bbr_mode {
 	BBR_PROBE_BW,	/* discover, share bw: pace around estimated bw */
 	BBR_PROBE_RTT,	/* cut inflight to min to probe min_rtt */
 };
+
 
 /* How does the incoming ACK stream relate to our bandwidth probing? */
 enum bbr_ack_phase {
